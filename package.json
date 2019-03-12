@@ -2,9 +2,9 @@
   "name": "nodeapi",
   "version": "1.0.0",
   "description": "My API with node.js and express",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
