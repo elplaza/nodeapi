@@ -4,13 +4,23 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://mongo:27017/test', {useNewUrlParser: true});
+
+var indexRouter = require('./src/routes/index');
+var usersRouter = require('./src/routes/users');
+var countriesRouter = require('./src/routes/countries');
 
 var app = express();
 
+const Country = mongoose.model('Country', { name: String });
+
+const kitty = new Country({ name: 'Italia' });
+kitty.save().then(() => console.log('italia salvata'));
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, './src/views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
@@ -21,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/countries', countriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
