@@ -4,20 +4,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
-mongoose.connect('mongodb://mongo:27017/test', {useNewUrlParser: true});
+//const mongoose = require('mongoose');
+
+//mongoose.connect('mongodb://mongo:27017/test', {useNewUrlParser: true});
+
+//const CountrySchema = require('./src/models/country');
+//const countryModel = mongoose.model('country', CountrySchema);
 
 var indexRouter = require('./src/routes/index');
 var usersRouter = require('./src/routes/users');
 var countriesRouter = require('./src/routes/countries');
 
 var app = express();
-
-const Country = mongoose.model('Country', { name: String });
-
-const kitty = new Country({ name: 'Italia' });
-kitty.save().then(() => console.log('italia salvata'));
 
 // view engine setup
 app.set('views', path.join(__dirname, './src/views'));
@@ -28,6 +28,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
