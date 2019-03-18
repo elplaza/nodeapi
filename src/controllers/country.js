@@ -16,6 +16,34 @@ exports.countries_list = function(req, res) {
     });
 };
 
+// Render list of all countries
+exports.countriesRender = function(req, res) {
+    countryModel.find({}, (err, countries) =>{
+        if(err){
+            res.send(err);
+        }else{
+            res.render('countries', {title: 'Paesi', countries: countries});
+        }
+    });
+};
+
+// Display dynamic test
+exports.countriesDynamic = function(req, res) {
+    const param = req.params.param
+    res.json({
+        data: param
+    });
+};
+
+
+// Display dynamic test
+exports.countriesQuery = function(req, res) {
+    const country = req.query.country
+    res.json({
+        country: country
+    });
+};
+
 // Display detail page for a specific country
 exports.country_detail = function(req, res) {
     countryModel.findById((req.params.id), (err, country)=>{

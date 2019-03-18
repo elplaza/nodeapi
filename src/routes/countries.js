@@ -6,6 +6,15 @@ var countryController = require('../controllers/country');
 /* GET countries listing. */
 router.get('/', countryController.countries_list);
 
+/* RENDER countries listing. */
+router.get('/list', countryController.countriesRender);
+
+/* DYNAMIC page. */
+router.get('/param/:param', countryController.countriesDynamic);
+
+/* Query parameters. */
+router.get('/query', countryController.countriesQuery);
+
 /* GET country. */
 router.get('/country/:id', countryController.country_detail);
 

@@ -6,13 +6,6 @@ var logger = require('morgan');
 
 const bodyParser = require('body-parser');
 
-//const mongoose = require('mongoose');
-
-//mongoose.connect('mongodb://mongo:27017/test', {useNewUrlParser: true});
-
-//const CountrySchema = require('./src/models/country');
-//const countryModel = mongoose.model('country', CountrySchema);
-
 var indexRouter = require('./src/routes/index');
 var usersRouter = require('./src/routes/users');
 var countriesRouter = require('./src/routes/countries');

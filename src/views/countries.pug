@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title + ':'
+  each country in countries
+    li= country.isocode2 + ' (title: ' + country.title + ', isocode 3: ' + country.isocode3 + ')'
+
+  br
+  img(src="/images/img1.jpg")
